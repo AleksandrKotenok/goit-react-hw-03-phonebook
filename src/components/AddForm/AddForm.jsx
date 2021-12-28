@@ -1,20 +1,20 @@
-import { Component } from 'react';
-import s from '../AddForm/AddForm.module.css';
+import { Component } from "react";
+import s from "../AddForm/AddForm.module.css";
 
 export class AddForm extends Component {
   state = {
-    name: '',
-    number: '',
+    name: "",
+    number: "",
   };
 
-  inputChange = e => {
-    this.setState({ [e.target.name]: e.target.value });
+  inputChange = ({ target: { name, value } }) => {
+    this.setState({ [name]: value });
   };
 
-  onSubmit = event => {
+  onSubmit = (event) => {
     event.preventDefault();
     this.props.submit(this.state);
-    this.setState({ name: '', number: '' });
+    this.setState({ name: "", number: "" });
   };
 
   render() {

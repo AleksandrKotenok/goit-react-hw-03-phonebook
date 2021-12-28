@@ -34,7 +34,7 @@ class App extends Component {
       contacts: [newRecord, ...contacts],
     }));
   };
-  updateContacts = () => {
+  filterContacts = () => {
     return this.state.contacts.filter((contact) => contact.name.toLowerCase().includes(this.state.filter.toLowerCase()));
   };
   deleteContact = (contactId) => {
@@ -49,13 +49,14 @@ class App extends Component {
   };
 
   render() {
+    const filteredContacts = this.filterContacts();
     return (
       <Fragment>
         <h1>Phonebook</h1>
         <AddForm submit={this.submit} />
         <h2>Contacts</h2>
         <Filter filter={this.state.filter} input={this.filterChange} />
-        <ContactList updatedContacts={this.updateContacts()} deleteContact={this.deleteContact} />
+        <ContactList contacts={filteredContacts} deleteContact={this.deleteContact} />
       </Fragment>
     );
   }
